@@ -3,7 +3,6 @@ import {Header} from './header';
 import React from 'react';
 import {api} from './library';
 
-
 function Example1() {
   const [name, setName] = React.useState("A")
 

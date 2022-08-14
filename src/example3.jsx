@@ -1,62 +1,55 @@
 import {Header} from './header';
 import React from 'react';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
-import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #eee',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 
-function IconMenu() {
+ function NestedModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCopy fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <Cloud fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
-        </MenuItem>
-      </MenuList>
-    </Paper>
+    <div>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <h2 id="parent-modal-title">Text in a modal</h2>
+          <p id="parent-modal-description">
+            
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+          <button onClick={handleClose}>ok</button>
+        </Box>
+      </Modal>
+    </div>
   );
 }
-
 
 
 
@@ -68,9 +61,9 @@ function Example3() {
       <Button variant="contained">Hello World</Button>;
       <div>
         Example3
-        <IconMenu/>
 
       </div>
+      <NestedModal/>
     </div>
   );
 }
