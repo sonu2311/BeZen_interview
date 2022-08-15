@@ -22,6 +22,13 @@ const style = {
 };
 
 function Card({ carddetails, cardDelete }) {
+  // Note: Once the title is edited on input-box, this value of title
+  // will go out of sync with `carddetails.title`. However it will not
+  // matter because after integrating backend API on "Save" button,
+  // the local value of `title` will be stored in backend. As a result:
+  // 1). Things will work fine without reload.
+  // 2). Things will work fine on reload, because everything will be
+  //     reconstructed again from the dict received from the backend.
   const [title, setTitle] = React.useState(carddetails.title);
   const [content, setContent] = React.useState(carddetails.content);
   const [open, setOpen] = React.useState(false);
